@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapbox Full Implementation</title>
+    <title>Simple Mapbox Map</title>
 
     <!-- Mapbox GL JS CSS -->
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.16.0/mapbox-gl.css" rel="stylesheet">
@@ -14,53 +14,25 @@
     <style>
         body { margin: 0; padding: 0; }
         #map { position: absolute; top: 0; bottom: 0; width: 100%; height: 100vh; }
-        .custom-marker {
-            background-size: cover;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
     </style>
 </head>
 <body>
     <div id="map"></div>
 
     <script>
-        // Mapbox access token
+        // Set your Mapbox access token
         mapboxgl.accessToken = 'pk.eyJ1IjoiY2xlZ2dsZXN0b24iLCJhIjoiY20xZmEybjQ3MXFtbzJwb29obnd4Ym9maSJ9.b38XRx5rB55HpzDk2sHo7g';
 
         // Initialize the map
         var map = new mapboxgl.Map({
-            container: 'map', // ID of the container (the div where the map will go)
-            style: 'mapbox://styles/mapbox/streets-v11', // Map style (streets view)
-            center: [-85.602, 44.3148], // Coordinates for Michigan (longitude, latitude)
-            zoom: 6 // Zoom level for Michigan
+            container: 'map', // Container ID for the map
+            style: 'mapbox://styles/mapbox/streets-v11', // Map style
+            center: [-85.602, 44.3148], // Initial position [longitude, latitude]
+            zoom: 6 // Initial zoom level
         });
 
-        // Add navigation controls to the map (zoom and rotate)
+        // Add navigation controls (zoom, rotation)
         map.addControl(new mapboxgl.NavigationControl());
-
-        // Example marker with video
-        var el = document.createElement('div');
-        el.className = 'custom-marker';
-        el.style.backgroundImage = 'url(https://imgur.com/aDseYSy.png)'; // Example image for marker
-        el.style.width = '50px';
-        el.style.height = '50px';
-        el.style.borderRadius = '50%';
-        el.style.backgroundSize = 'cover';
-
-        var popup = new mapboxgl.Popup({ offset: 25 }).setHTML(`
-            <video autoplay controls style="width: 100%;">
-                <source src="https://youtu.be/XVut_g99oZE" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        `);
-
-        new mapboxgl.Marker(el)
-            .setLngLat([-84.568, 42.740]) // Coordinates for marker
-            .setPopup(popup) // Attach the popup
-            .addTo(map);
-
     </script>
 </body>
 </html>
